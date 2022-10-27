@@ -36,7 +36,7 @@ describe('ProductCard', () => {
 
     const button = screen.getByRole('button');
 
-    fireEvent.click(button);
+    await fireEvent.click(button);
 
     expect(addToCart).toHaveBeenCalledTimes(1);
     expect(addToCart).toHaveBeenCalledWith(product);

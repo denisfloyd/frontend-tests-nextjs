@@ -22,7 +22,7 @@ describe('Search', () => {
 
     const form = screen.getByRole('form');
 
-    fireEvent.submit(form);
+    await fireEvent.submit(form);
 
     expect(doSearch).toHaveBeenCalledTimes(1);
   });
@@ -35,7 +35,7 @@ describe('Search', () => {
     const input = screen.getByRole('searchbox');
 
     await userEvent.type(input, inputText);
-    fireEvent.submit(form);
+    await fireEvent.submit(form);
 
     expect(doSearch).toHaveBeenCalledWith(inputText);
   });
