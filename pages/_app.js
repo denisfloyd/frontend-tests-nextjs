@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import '../styles/globals.css';
 
 import Cart from '../components/cart';
