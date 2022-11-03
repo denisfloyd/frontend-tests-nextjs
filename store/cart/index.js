@@ -5,10 +5,15 @@ const initialState = {
   products: [],
 };
 
+const addProduct = (store, product) => {
+  if (store.state.products.includes(product)) {
+    return store.state.products;
+  }
+  return [...store.state.products, product];
+};
+
 export const useCartStore = create((set) => ({
   state: {
-    open: false,
-    products: [],
     ...initialState,
   },
   actions: {
@@ -20,7 +25,7 @@ export const useCartStore = create((set) => ({
     add: (product) =>
       set((store) => {
         return {
-          state: { open: true, products: [...store.state.products, product] },
+          state: { open: true, products: addProduct(store, product) },
         };
       }),
   },
