@@ -16,7 +16,6 @@ describe('Cart', () => {
     server = makeServer({ environment: 'test' });
     const render = renderHook(() => useCartStore());
     result = render.result;
-    wait = render.waitForNextUpdate;
     add = result.current.actions.add;
     toggle = result.current.actions.toggle;
     spy = jest.spyOn(result.current.actions, 'toggle');
@@ -52,8 +51,6 @@ describe('Cart', () => {
       userEvent.click(button);
       userEvent.click(button);
     });
-
-    wait();
 
     expect(spy).toHaveBeenCalledTimes(2);
   });
