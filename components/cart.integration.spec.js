@@ -2,8 +2,11 @@ import { renderHook, act } from '@testing-library/react-hooks';
 import { screen, render } from '@testing-library/react';
 import { useCartStore } from '../store/cart';
 import { makeServer } from '../miragejs/server';
+import { setAutoFreeze } from 'immer';
 import userEvent from '@testing-library/user-event';
 import Cart from './cart';
+
+setAutoFreeze(false);
 
 describe('Cart', () => {
   let server;
@@ -11,12 +14,13 @@ describe('Cart', () => {
   let spy;
   let add;
   let toggle;
+  let reset;
 
   beforeEach(() => {
     server = makeServer({ environment: 'test' });
-    const render = renderHook(() => useCartStore());
-    result = render.result;
+    result = renderHook(() => useCartStore()).result;
     add = result.current.actions.add;
+    reset = result.current.actions.reset;
     toggle = result.current.actions.toggle;
     spy = jest.spyOn(result.current.actions, 'toggle');
   });
@@ -47,7 +51,7 @@ describe('Cart', () => {
 
     const button = screen.getByTestId('close-button');
 
-    actRenderer(() => {
+    act(() => {
       userEvent.click(button);
       userEvent.click(button);
     });
