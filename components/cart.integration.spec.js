@@ -45,8 +45,6 @@ describe('Cart', () => {
 
       await userEvent.click(screen.getByTestId('close-button'));
 
-      result.waitForNextUpdate();
-
       expect(screen.getByTestId('cart')).not.toHaveClass('hidden');
     });
   });
