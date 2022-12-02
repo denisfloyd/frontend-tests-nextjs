@@ -12,4 +12,8 @@ module.exports = {
     '<rootDir>/store/**/*.js',
     '!<rootDir>/pages/_app.js',
   ],
+  watchPlugins: [
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname',
+  ],
 };
